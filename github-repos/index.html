@@ -10,9 +10,12 @@
     <div class="row" ng-controller="GithubController">
       <div class="medium-6 columns">
         <h1>Github Repo Commit List</h1>
-        <input type="text" ng-model="username">
+        <input type="text" ng-model="username" ng-model-options="{ debounce: 500 }">
+        <select ng-model="selectedRepo">
+          <option value="{{ repo.full_name }}" ng-repeat="repo in repos">{{ repo.full_name }}</option>
+        </select>
         <ul>
-          <li ng-repeat="repo in repos">{{ repo.full_name }}</li>
+          <li ng-repeat="commit in commits">{{ commit.sha }}: {{ commit.commit.message }}</li>
         </ul>
       </div>
 
